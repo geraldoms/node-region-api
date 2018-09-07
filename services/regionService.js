@@ -1,7 +1,7 @@
 const rq = require("request-promise");
 
 class RegionService {
-  static getRegioByCountryAndZip(countryCode, zipCode) {
+  static getRegionByCountryAndZip(countryCode, zipCode) {
     if (!countryCode || !zipCode) {
       throw new Error("Country Code and Zip Code are required");
     }
@@ -11,7 +11,8 @@ class RegionService {
       json: true
     };
 
-    return rq(options)
+    return rq
+      .get(options)
       .then(res => {
         return {
           city: res.places[0]["place name"],
